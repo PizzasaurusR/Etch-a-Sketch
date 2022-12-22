@@ -1,21 +1,35 @@
-#container {
-    background-color: blue;
-    height: 300px;
-    width: 200px;
+
+html{
+    text-align: center;
 }
 
-.unit{
-    height: 10px;
-    width: 10px;
-    background-color: red;
-    margin: 1px;
+.right{
+    float: right;
+}
+
+.left{
     display: inline-block;
 }
 
-.unit-hover{
+.square{
+background-color: grey;
+border: solid black 1px;
+}
+
+.color{
     background-color: black;
-    height: 10px;
-    width: 10px;
-    margin: 1px;
-    display: inline-block;
+    border: solid black 1px;
 }
+
+.container {
+    margin-top: 25px;
+    margin-right: 40px;
+    display: inline-grid;
+    grid-template-columns: repeat(16, 2fr);
+    grid-template-rows: repeat(16, 2fr);
+    border: 5px solid black;
+    border-radius: 5px;
+    height: 575px;
+    width: 575px;
+}
+

@@ -1,17 +1,44 @@
+const grid = document.querySelector(".container");
+const userInput = document.getElementById("quantity");
+const resetBtn = document.querySelector(".reset");
 
-$(document).ready(function(){  
-    for (var x=0; x<16; x++){
-        for (var y=0; y<16; y++){
-            var singleBox = $("<div class='unit'></div>");
-            singleBox.appendTo('#container');
-        }
+gridCreate = () => {
+    for( let i = 0; i<256; i++){
+        const div = document.createElement("div");
+        div.classList.add("square");
+        grid.appendChild(div);
     }
+};
+
+updateGrid = () => {
+    grid.innerHTML = "";
+    grid.style.setProperty(
+        "grid-template-columns",
+        `repeat(${userInput.value}, 2fr)`
+    );
+
+    for (let i = 0; i < userInput.value * userInput.value; i++){
+        const div = document.createElement("div");
+        div.classList.add("square");
+        grid.appendChild(div);
+    }
+    console.log(userInput.value);
+};
+
+const square = document.querySelector("div");
+square.addEventListener("mouseover", function(event){
+    event.target.classList.replace("square", "color")
 });
 
-const gridBoxes = document.querySelector('#container div');
+userInput.addEventListener("change", updateGrid);
 
-function changeClass () {
-    this.classList.add('unit-hover');
-}
+resetBtn.addEventListener("click", function(){
+    grid.innerHTML = "";
+    userInput.value = "";
+    grid.style.setProperty("grid-template-columns", `repeat(16, 2fr)`);
+    grid.style.setProperty("grid-template-rows", `repeat(16, 2fr)`);
+    gridCreate();
+});
 
-gridBoxes.forEach(div => div.addEventListener('mouseover', changeClass));
+gridCreate();
+
